@@ -16,6 +16,9 @@ services:
       - Credentials__AdminEmail=${Credentials__AdminEmail}
       - Credentials__AdminPassword=${Credentials__AdminPassword}
       - ApplyMigrationsOnBoot=${ApplyMigrationsOnBoot}
+      # - ASPNETCORE_URLS=http://0.0.0.0:80
+    depends_on:
+      - sql
     networks:
       - shared_network
 
@@ -31,7 +34,7 @@ services:
       - mssqlvolume:/var/opt/mssql
     networks:
       - shared_network
-
+      
 networks:
   shared_network:
     external: true

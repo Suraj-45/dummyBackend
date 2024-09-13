@@ -20,17 +20,17 @@ ConfigurationManager configuration = builder.Configuration;
 builder.Services.AddDbContext<RealEstateContext>(options => options.UseSqlServer(configuration.GetConnectionString("RealEstate")));
 
 // added by me start
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowSpecificOrigin",
-        builder =>
-        {
-            builder.WithOrigins("http://localhost:5173")  // Replace with your frontend's URL
-                   .AllowAnyHeader()
-                   .AllowAnyMethod()
-                   .AllowCredentials();
-        });
-});
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy("AllowSpecificOrigin",
+//         builder =>
+//         {
+//             builder.WithOrigins("http://localhost:5173")  // Replace with your frontend's URL
+//                    .AllowAnyHeader()
+//                    .AllowAnyMethod()
+//                    .AllowCredentials();
+//         });
+// });
 
 // added by me end
 
@@ -252,14 +252,14 @@ app.UseExceptionHandlerMiddleware();
 
 // app.UseLoggingMiddleware();
 
-app.UseCors("AllowSpecificOrigin"); // added by me
+// app.UseCors("AllowSpecificOrigin"); // added by me
 
 // Cors
-// app.UseCors(x => x // commented by me
-//     .AllowAnyOrigin()
-//     .AllowAnyMethod()
-//     .AllowAnyHeader()
-// );
+app.UseCors(x => x // commented by me
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+);
 
 // Authentication & Authorization
 app.UseAuthentication();
