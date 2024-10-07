@@ -37,6 +37,3 @@ x86/
 *.suo
 *.userprefs
 *.vspscc
-
-# Environment
-*.env
