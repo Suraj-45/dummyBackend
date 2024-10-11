@@ -8,6 +8,8 @@ namespace RealEstateApp.Api.DTO.AuthDTO
 
         public string Email { get; set; }
 
+        
+
         public string Password { get; set; }
 
         private bool CheckUsername()
