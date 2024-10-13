@@ -40,6 +40,7 @@ namespace RealEstateApp.Api.Controllers
         public async Task<IActionResult> Login([FromBody] LoginRequestDTO request)
         {
             var user = await _userManager.FindByNameAsync(request.Username);
+
             if (user != null && await _userManager.CheckPasswordAsync(user, request.Password))
             {
                 var userRoles = await _userManager.GetRolesAsync(user);
