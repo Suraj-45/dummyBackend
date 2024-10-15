@@ -192,7 +192,7 @@ else
             var newUser = new User()
             {
                 Name = newAdminUser.UserName,
-                Email = newAdminUser.Email,
+                PhoneNumber = newAdminUser.PhoneNumber,
                 Username = newAdminUser.UserName
             };
             realEstateContext.Users.Add(newUser);

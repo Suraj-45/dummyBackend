@@ -239,6 +239,17 @@ namespace RealEstateApp.Api.Controllers
             var maxPrice = request.MaxPrice ?? int.MaxValue;
             var pageSize = request.PageSize ?? 5;
             var pageNumber = request.Page ?? 1;
+
+            var propertyFilter = new SavePropertyFilter
+            {
+                MinPrice = minPrice,
+                MaxPrice = maxPrice,
+                CurrencyTypeId = request.CurrencyId ?? 0,
+                PropertyTypeId = request.TypeId ?? 0,
+                StatusId = request.StatusId ?? 0,
+                AppliedDateTime = DateTime.Now
+            };
+
             var query = _context.Properties
                 .AsNoTracking()
                 .Where(x => x.Status != (int)EntityStatus.Deleted)
@@ -280,6 +291,10 @@ namespace RealEstateApp.Api.Controllers
                 NumberOfPages = numberOfPages,
                 CurrentPage = pageNumber,
             };
+
+            _context.PropertyFilters.Add(propertyFilter);
+            await _context.SaveChangesAsync();
+
             return Ok(responseDTO);
         }
 
